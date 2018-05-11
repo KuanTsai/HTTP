@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var time = new Date();
+        var nowdate = time.toLocaleDateString();
+        var now = time.toLocaleTimeString();
+
+        //var p=$("<p>").text(nowdate+now);
+        $("body").append($("<p>").text(nowdate + now));
+        $("body").append($("<button>").prop("id", "stopbutton").text("stop"));
+        $("body").append($("<button>").prop("id", "restart").text("restart"));
+        function timerrr() {
+            window.setInterval(function () {
+                var time = new Date();
+                var nowdate = time.toLocaleDateString();
+                var now = time.toLocaleTimeString();
+
+                $("p").text(nowdate + now);
+                //updata time on page.
+            }, 1000);
+        }
+
+        var timer = window.setInterval(function () {
+            var time = new Date();
+            var nowdate = time.toLocaleDateString();
+            var now = time.toLocaleTimeString();
+
+            $("p").text(nowdate + now);
+            //updata time on page.
+        }, 1000);
+
+
+        $("#stopbutton").click(function (e) {
+            window.clearInterval(timer);
+            //$(e.target).prop("disabled", "true");
+        })
+
+        $("#restart").click(function (e) {
+            timer=window.setInterval(timerrr(),1000);
+        })
+    </script>
+</body>
+
+</html>

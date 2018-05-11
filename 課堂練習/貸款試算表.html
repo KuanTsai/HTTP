@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-9 text-center">
+                <h3>貸款試算表</h3>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="txtNetIncome" class="col-2 col-form-label text-right">貸款金額</label>
+            <div class="input-group col-6">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        $
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="txtNetIncome" />
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary" id="compute">
+                    計算
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxRate" class="col-3 col-form-label text-right">年利率</label>
+        <div class="input-group col-5">
+            <input type="text" class="form-control" maxlength="5" id="txtTaxRate" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    %
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxAdjustment" class="col-3 col-form-label text-right">貸款年期</label>
+        <div class="input-group col-5">
+            <input type="text" class="form-control" id="txtTaxAdjustment" />
+        </div>
+    </div>
+    </div>
+    <div class="form-group row">
+        <label for="getmonthlypayrateamount" class="col-3 col-form-label text-right">每月償還金額(本金加利息)</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    $
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="getmonthlypayrateamount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="gettotalfinalpayamount" class="col-3 col-form-label text-right">總償還金額</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    $
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="gettotalfinalpayamount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="getmonthlypayamount" class="col-3 col-form-label text-right">每月利息</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    $
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="getmonthlypayamount" />
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        //yRate:年利率,yLoan:貸款年期,yAmount:貸款本金
+        //_mRate:月利率 _mLoan:月數 _aRate:每月應付本息金額 _amount:貸款本金
+        var LoanCalculator = function (yRate, yLoan, yAmount) {
+            var _mRate = yRate / 12;
+            var _mLoan = yLoan * 12;
+            var _yAmount = yAmount;
+            var _aRate = ((Math.pow(1 + _mRate, _mLoan) * _mRate) / (Math.pow(1 + _mRate, _mLoan) - 1));
+            this.getMonthlyPayAmount = function () {
+                return Math.round(_yAmount * _aRate);
+            }
+            this.getTotalFinalPayAmount = function () {
+                return Math.round(this.getMonthlyPayAmount() * _mLoan);
+            }
+            this.getMonthlyPayRateAmount = function () {
+                return Math.round(this.getMonthlyPayAmount() - (_yAmount / _mLoan));
+            }
+        }
+
+        var compute = document.getElementById("compute");
+        compute.onclick = function () {
+            var yRate = document.getElementById("txtTaxRate").value;
+            var yLoan = document.getElementById("txtTaxAdjustment").value;
+            var yAmount = document.getElementById("txtNetIncome").value;
+            var calculator = new LoanCalculator(yRate, yLoan, yAmount);
+            document.getElementById("getmonthlypayamount").value=calculator.getMonthlyPayRateAmount();
+            document.getElementById("gettotalfinalpayamount").value=calculator.getTotalFinalPayAmount();
+            document.getElementById("getmonthlypayrateamount").value=calculator.getMonthlyPayAmount();
+
+        }
+
+    </script>
+</body>
+
+</html>

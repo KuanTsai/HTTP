@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-6">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-dark" id="gamestart">開始遊戲</button>
+                    <button type="button" class="btn btn-outline-dark" id="giveup">放棄重來</button>
+                    <button type="button" class="btn btn-outline-dark" id="answer">解答</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                遊戲歷程
+                <ul class="list-group" id="answertext">
+                    <li class="list-group-item d-flex align-items-center active"> 
+                        遊戲開始
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text " id="btnGroupAddon">答案</div>
+                    </div>
+                    <input type="text" class="form-control" placeholder="請輸入四位數字" aria-label="請輸入四位數字" aria-describedby="btnGroupAddon" id="inputnum">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-white" id="btncheck">確認</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        var gamestart = document.getElementById("gamestart");
+        var giveup = document.getElementById("giveup");
+        var answer = document.getElementById("answer");
+        var btncheck = document.getElementById("btncheck");
+        var random_answer = "";
+
+        gamestart.onclick = function () {
+            while (random_answer.length < 4) {
+                a = Math.floor(Math.random() * 10);
+                if (random_answer.indexOf(a) > -1) {
+                    continue;
+                }
+                random_answer += a;
+            }
+            console.log(random_answer);
+        }
+
+        giveup.onclick = function () {
+            location.reload();//網站重整F5
+        }
+
+        answer.onclick = function () {
+            alert(random_answer);
+        }
+
+        btncheck.onclick = function () {
+            var a = 0, b = 0;
+            var inputnum = document.getElementById("inputnum").value;
+            for (var i = 0; i < inputnum.length; i++) {
+
+                if (random_answer.includes(inputnum[i])) {
+
+                    if (inputnum[i] == random_answer[i]) {
+                        a++;
+                    }
+                    else {
+                        b++;
+                    }
+                } //console.log(inputnum[i]);
+            } 
+
+            //console.log(" a " + a + " , b " + b);
+            //console.log("num" + inputnum);
+            
+            var li = document.createElement("li");
+            li.className = "list-group-item d-flex align-items-center";
+            var brg=document.createElement("span");
+            brg.className="badge badge-success badge-pill mr-2";
+            brg.innerText= a +"A" + b + "B";
+            var p=document.createElement("span");
+            p.innerText=inputnum;
+
+            if(a==4){
+                brg.className="badge badge-danger badge-pill mr-2";
+                alert("you win");
+            }
+
+            document.getElementById("answertext").appendChild(li).appendChild(brg);
+            document.getElementById("answertext").appendChild(li).appendChild(p);
+
+        }
+    </script>
+</body>
+
+</html>

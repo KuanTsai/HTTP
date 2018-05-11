@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div id="map" style="width:700px;height:700px;">
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8o8S3cfVwB5VsQRW2tOxdAWT2yZnInoI"></script>
+    <script>
+        // download information.
+        var request = new XMLHttpRequest();
+        var geocodingAPIRequest = new XMLHttpRequest();
+
+        request.onload = function () {
+            var items = JSON.parse(this.responseText);
+
+            for (var item of items) {
+                var address = item.地址;
+                if (address === '')
+                    continue;
+
+                geocodingAPIRequest.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyA8o8S3cfVwB5VsQRW2tOxdAWT2yZnInoI', false);
+                geocodingAPIRequest.send();
+
+                var result = JSON.parse(geocodingAPIRequest.responseText);
+                if (result.status == google.maps.GeocoderStatus.OK) {
+                    var obj = JSON.stringify(result);
+                    localStorage.setItem(address, obj);
+                    console.log(
+                        "address: " + address +
+                        "lat: " + result.results[0].geometry.location.lat +
+                        "lng: " + result.results[0].geometry.location.lng + "<br />"
+                    );
+                } else {
+                    console.log(result.status);
+                }
+            }
+        };
+
+        request.open('GET', "http://opendata.hccg.gov.tw/dataset/07caf18a-a966-4409-810a-ce3fdb7447b7/resource/3bca2d3b-177c-4e4a-9576-4a3ed8c81612/download/20180307114843661.json");
+        //request.open('GET', "http://opendata.hccg.gov.tw/dataset/4e722575-66a2-4af9-b1ff-95c2469331d1/resource/e17629a6-f7fb-4895-9d91-9d8e37d79eae/download/20180307103221255.json");
+        request.send();
+    </script>
+</body>
+
+</html>

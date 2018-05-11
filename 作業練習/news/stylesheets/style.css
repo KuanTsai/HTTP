@@ -1,0 +1,149 @@
+body{
+    font-size: 15px;
+    line-height: 1.4em;
+    font-family: sans-serif;
+    color: #333;
+}
+a{
+    color: #000a92;
+    text-decoration: none;
+}
+a:hover{
+    color: #054083;
+    text-decoration: underline;
+}
+.container{
+    width: 940px;
+    margin: 0 auto;/*上下 左右 auto自動置中*/
+}
+h1.logo a{/*選取器寫在a連結上,方便使用者點圖就能回首頁*/
+    display: block;/*將連結區塊化*/
+    width: 376px;
+    height: 81px;
+    background: url('../images/logo1.png') no-repeat;/*'..'相對路徑*/
+    white-space: nowrap;/*阻止文字內容在寬度不足時換行*/
+    text-indent: 110%;/*把文字縮排置範圍外*/
+    overflow: hidden;/*隱藏超出範圍的內容*/
+}
+.header .container{
+    position: relative;
+}
+.header .slogan{
+    position: absolute;
+    top:20px;
+    right: 0;
+}
+.slogan strong{
+    font-size: 1.5em;
+    color: #5233ff;
+}
+.main-menu{
+    background: #80b7ff;
+    margin-bottom: 20px;
+    overflow: auto;/*clearfix*/
+}
+.main-menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-menu ul li{
+    float: left;
+    width: 25%;
+}
+.main-menu ul li a{
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+.main-menu ul li a:hover{
+    background: #5233ff;
+}
+.main{
+    width: 700px;
+    float: left;
+    padding-bottom: 30px;
+}
+.side{
+    width: 220px;
+    float: right;
+    padding-bottom: 30px;
+}
+.footer{
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0 40px;
+    clear: both;/*清除浮動*/
+}
+.headline{
+    border: #ddd 1px solid;
+    padding: 10px 10px 10px 220px;/*內距*/
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5em;
+    position: relative;/*使容器成為 絕對定位元素 的定位基準*/
+    min-height: 150px;
+}
+.headline img{
+    position: absolute;/*絕對定位*/
+    left: 10px;
+}
+.headline h2{
+    margin-top: 0;
+    font-size: 1.5em;
+}
+.headline .more{
+    display: block;
+    text-align: right;
+}
+ul.news-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.news{
+    box-sizing: border-box;
+    width: 340px;
+    height: 250px;
+    overflow: hidden;
+    border: #ddd 1px solid;
+    padding: 10px;
+    margin-bottom: 20px;
+    float: left;
+    margin-right: 20px;
+}
+.news:nth-child(odd){
+    margin-right: 20px;
+}
+.news h2{
+    margin-top: 0;
+    line-height: 1.2em;
+}
+.news .img{
+    float: left;
+    margin: 0 10px 5px 0;/*將文字向左浮動,可達成文繞圖效果*/
+}
+.side-title{
+    padding-bottom: 4px;
+    border-bottom: #054083 4px solid;
+}
+.top-news{
+    padding-left: 30px;
+}
+.top-news li{
+    line-height: 1.5em;
+    padding-bottom: 5px;
+}
+a.back-top{
+    position: fixed;
+    bottom: 150px;
+    right: 0;
+    background: #4084d3;
+    padding: 10px 20px;
+    font-size: 2em;
+    color: #fff;
+}

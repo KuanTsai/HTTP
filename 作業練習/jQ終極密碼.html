@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>終極密碼</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 微軟正黑體;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row mt-5">
+        <div class="col-5">
+        </div>
+        <div class="col-2 bg-dark text-white text-center">
+            <h5 class="mt-2">終極密碼</h5>
+            <div class="form-group">
+                <label for=""></label>
+                <input type="text" class="form-control bg-dark text-white border-0" name="maxmin" id="maxmin" aria-describedby="maxmin" placeholder="0 ~ 99"
+                    disabled>
+            </div>
+            <div class="form-group">
+                <label for=""></label>
+                <input type="text" class="form-control bg-dark text-white border-0" name="ans" id="ans" aria-describedby="ans" placeholder=""
+                    disabled>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-block btn-outline-light rounded" id="btnrandom">開始遊戲</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>1</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>2</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>3</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>4</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>5</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>6</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>7</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>8</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>9</button>
+                </div>
+            </div>
+            <div class="row mt-2 mb-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-danger rounded" id="btnclean" disabled>
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" id="button" disabled>0</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-success rounded" id="btncheck" disabled>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var maxnumber = 99, minnumber = 0, times = 10, timess = 0;
+        var answer = 0;
+        $("button").click(function (e) {
+            //var i=$("#ans").val();
+            //i+=e.target.innerHTML;
+            $("#ans").val($("#ans").val() + this.innerText);
+        });
+        $("#btnrandom").click(function () {
+            answer = Math.floor(Math.random() * 100);
+            console.log(answer);
+            $("button").prop("disabled", false);
+            $("#ans").val("");
+            $("#maxmin").val("");
+            maxnumber = 99, minnumber = 0, times = 10, timess = 0;
+        });
+
+        $("#btnclean").click(function () {
+            $("#ans").val("");
+        });
+
+        $("#btncheck").click(function () {
+            var i = $("#ans").val();
+            times--;
+            timess++;
+            if (!parseInt(i)) {
+                alert("請輸入數字");
+            }
+            var ans = parseInt(i);
+
+            if (ans > answer && ans < maxnumber) {
+                maxnumber = ans;
+            } else if (ans < answer && ans > minnumber) {
+                minnumber = ans;
+            }
+            $("#maxmin").val(minnumber + " ~ " + maxnumber + "還有" + times + "次");
+            console.log(ans + "猜了" + timess + "次");
+            $("#ans").val("");
+            if (ans == answer) {
+                $("#maxmin").val("");
+                $("#ans").val("you win.");
+                $("button").prop("disabled", true);
+                $("#btnrandom").prop("disabled", false);
+            }
+            if (times == 0) {
+                $("#ans").val("game over.");
+                $("button").prop("disabled", true);
+                $("#btnrandom").prop("disabled", false);
+            }
+        })
+    </script>
+</body>
+
+</html>

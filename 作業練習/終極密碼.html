@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>終極密碼</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 微軟正黑體;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row mt-5">
+        <div class="col-5">
+        </div>
+        <div class="col-2 bg-dark text-white text-center">
+            <h5 class="mt-2">終極密碼</h5>
+            <div class="form-group">
+                <label for=""></label>
+                <input type="text" class="form-control bg-dark text-white border-0" name="maxmin" id="maxmin" aria-describedby="maxmin" placeholder="0 ~ 99"
+                    disabled>
+            </div>
+            <div class="form-group">
+                <label for=""></label>
+                <input type="text" class="form-control bg-dark text-white border-0" name="ans" id="ans" aria-describedby="ans" placeholder=""
+                    disabled>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button type="button" class="btn btn-block btn-outline-light rounded" id="btnrandom">開始遊戲</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>1</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>2</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>3</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>4</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>5</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>6</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>7</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>8</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>9</button>
+                </div>
+            </div>
+            <div class="row mt-2 mb-2">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-danger rounded" id="btnclean" disabled>
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-light rounded-circle" disabled>0</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-success rounded" id="btncheck" disabled>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script>
+        var buttons = document.getElementsByTagName("button");
+        for (var i = 0; i < buttons.length; i++) {
+            var button = buttons[i];
+            button.onclick = function () {
+                var buttontext = event.srcElement;
+                document.getElementById("ans").value += buttontext.innerHTML;
+            }
+        }
+
+        var answer;
+        var btnrandom = document.getElementById("btnrandom");
+        btnrandom.onclick = function () {
+            answer = Math.floor(Math.random() * 100);
+            console.log(answer);
+            for (var i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
+                button.disabled = false;
+            }
+            document.getElementById("ans").value = "";
+            document.getElementById("maxmin").value = "";
+            maxnumber = 99, minnumber = 0, times = 10, timess = 0;
+
+        }
+
+        var btnclean = document.getElementById("btnclean");
+        btnclean.onclick = function () {
+            document.getElementById("ans").value = "";
+        }
+
+        var maxnumber = 99, minnumber = 0, times = 10, timess = 0;
+        var btncheck = document.getElementById("btncheck");
+        btncheck.onclick = function () {
+            times--;
+            timess++;
+            if (!parseInt(document.getElementById("ans").value)) {
+                alert("請輸入數字");
+            }
+            if (document.getElementById("ans").value == answer) {
+                alert("you win.");
+                document.getElementById("maxmin").value = "";
+                for (var i = 0; i < buttons.length; i++) {
+                    var button = buttons[i];
+                    button.disabled = true;
+                }
+                document.getElementById("btnrandom").disabled=false;
+                
+            }
+            else if ((document.getElementById("ans").value) > answer && document.getElementById("ans").value < maxnumber) {
+                maxnumber = document.getElementById("ans").value;
+            }
+            else if ((document.getElementById("ans").value) < answer && document.getElementById("ans").value > minnumber) {
+                minnumber = document.getElementById("ans").value;
+            }
+            document.getElementById("maxmin").value = minnumber + " ~ " + maxnumber + "還有" + times + "次";
+            console.log(document.getElementById("ans").value + "猜了" + timess + "次");
+            document.getElementById("ans").value = "";
+            if (times == 0) {
+                document.getElementById("ans").value = "game over.";
+                for (var i = 0; i < buttons.length; i++) {
+                    var button = buttons[i];
+                    button.disabled = true;
+                }
+                btnrandom.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

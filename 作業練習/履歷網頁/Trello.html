@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <style>
+            .modal-lg{
+                width: 55%;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://dummyimage.com/280x180.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">#1080 Bootstrap 的元件運用挑戰題作業</h5>
+            <p class="card-text">利用 Bootstrap 設計類似 Trello 的卡片樣板。(不需要有任何儲存資料功能) 版面做得越像越好(不需在意顏色)
+            </p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                新增一張卡片
+            </button>
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="modal-header">
+                                    <h5>Bootstrap 作業練習</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="ml-2">位於文件列表
+                                    <a href="#">練習中/作業中</a>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <!--內文-->
+                                    <p>描述</p>
+                                    <div class="input-group input-group-lg">
+                                        <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">儲存</button>
+                                    </div>
+                                    <p>新增評論</p>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">儲存</button>
+                                    </div>
+                                    <p>活動</p>
+                                    <p>Kuan Tsai再次編輯了這張卡片</p>
+                                    <p>Kuan Tsai編輯了這張卡片</p>
+                                    <p>Kuan Tsai新增了這張卡片</p>
+
+                                </div>
+                                <div class="col-4">
+                                    <p>新增</p>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">成員</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">標籤</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">代辦清單</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">到期日</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">附件</button>
+                                    <p>強化功能</p>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">Google雲端硬碟</button>
+                                    <p>動作</p>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">移動</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">複製</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">立即觀看</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">封存</button>
+                                    <a href="#" class="text-secondary">分享及其他</a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

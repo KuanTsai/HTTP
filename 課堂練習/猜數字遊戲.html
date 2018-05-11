@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <script>
+        /*var answer=Math.floor(Math.random()*100);*/
+        var answer = Math.floor(Math.random() * 100);
+        var a = 0, b = 99, i = 11;
+        while (true) {
+            i--;
+            var num = prompt("請輸入猜的數字" + a + "~" + b + "還有" + i + "次");
+            if (i == 0) {
+                alert("失敗,遊戲結束。");
+                break;
+            }
+            if (!parseInt(num)) {
+                alert("輸入的不是數字喔。");
+                continue;
+            }
+            if (num == answer) {
+                alert("猜到了，恭喜。");
+                break;
+            }
+            else if (num > answer) {
+                alert(num + "猜的比正確的大。");
+                b = num;
+            }
+            else {
+                alert(num + "猜的比正確的小。");
+                a = num;
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

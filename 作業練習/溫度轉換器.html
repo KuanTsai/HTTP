@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="row ml-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="unitCF" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            攝氏轉化為華氏
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="unitFC" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            華氏轉化為攝氏
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="offset-1"> </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">1</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">2</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">3</button>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="offset-1"> </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">4</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">5</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">6</button>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="offset-1"> </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">7</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">8</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-light rounded-0 border">9</button>
+                    </div>
+                </div>
+                <div id="lostDiv" class="row mt-1">
+                    <div class="offset-1"> </div>
+                    <div class="col-3 text-center">
+                        <button type="button" class="btn btn-light rounded-0 border">0</button>
+                    </div>
+                    <div class="col-3 text-center">
+                        <button type="button" class="btn btn-light rounded-0 border">.</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group">
+                    <label for=""></label>
+                    <input type="text" class="form-control" name="" id="txt" aria-describedby="helpId" placeholder="請輸入數字">
+                    <small id="helpId" class="form-text text-muted"></small>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <button type="button" id="btnprase" class="btn btn-light rounded-0 border">轉換</button>
+                        <button type="button" id="btnclean" class="btn btn-light rounded-0 border">清除</button>
+                    </div>
+                    <div class="col">
+                        <div class="col-auto my-1">
+                            <label class="sr-only" for="ans">Username</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">結果：</div>
+                                </div>
+                                <input type="text" class="form-control" id="ans" placeholder="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        /*document.getElementsByClassName("container").length
+        document.getElementsByClassName("row").length
+        document.getElementsByTagName("div").length
+        document.getElementsByTagName("button")[12].innerText
+        document.querySelectorAll("input[type='text']")
+        document.querySelectorAll("button[type='button']")
+        var nodes=document.querySelectorAll("button");
+            for(var i=0;i<nodes.length;i++)
+            {
+                console.log(nodes[i].innerText);
+            }
+        var newlement=document.createElement("div");
+        newlement.className="col-2";
+        var newbutton=document.createElement("button");
+        newbutton.innerText="TWT";
+        newlement.className="btn btn-light rounded-0 border";
+    
+        newlement.appendChild(newbutton);
+        var lostDiv=document.getElementById("lostDiv");
+        lostDiv.appendChild(newlement);*/
+
+        /*newlement.innerHTML()*/
+        var buttons = document.getElementsByTagName("button");
+        for (var i = 0; i < buttons.length; i++) {
+            var button = buttons[i];
+            button.onclick = function () {
+                var btn = event.srcElement;//來源
+                document.getElementById("txt").value += btn.innerHTML;
+            }
+        }
+        var btnclean = document.getElementById("btnclean");
+        btnclean.onclick = function () {
+            document.getElementById("txt").value = "";
+        }
+        var btnprase = document.getElementById("btnprase");
+        btnprase.onclick = function () {
+            var optCF = document.getElementById("unitCF");
+            var optFC = document.getElementById("unitFC");
+            var input = document.getElementById("txt").value;
+            var tempF=0;
+            if (optCF.checked) {
+                tempF = (input * 1.8) + 32;
+            }
+            else {
+                tempF = (input - 32) / 1.8;
+            }
+            document.getElementById("ans").value = tempF.toFixed(2);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <style>
+        .mapstyle {
+            width: 700px;
+            height: 500px;
+            border: 1px solid #000000;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map" class="mapstyle mr-5">
+        MAP
+    </div>
+    <div id="dirction1"></div>
+    <div id="dirction2"></div>
+    <div id="dirction3"></div>
+    <div id="dirction4"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYa2lWEDFEOGah0x1xBcIc-km4rg7B3Y&callback=initMap" async
+        defer></script>
+    <script type="text/javascript">
+        var map;
+        var marker = null;
+        var center = { lat: 24.7571075, lng: 120.952429 };
+        var point1 = null, point2 = null;
+        var directionsService = null;
+        var directionsDisplay = null;
+
+        window.onload = function () {
+
+            map = new google.maps.Map(
+                document.getElementById('map'), {
+                    center: center,
+                    zoom: 15
+                });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();//有幾個地圖
+            directionsDisplay.setMap(map);//設定要顯示的地圖
+            directionsDisplay.setPanel(document.getElementById('dirction'));
+
+            map.addListener("click", function (e) {
+
+                if (point1 != null && point2 != null) {
+                    point1 = null;
+                    point2 = null;
+                }
+
+                if (point1 == null) {
+                    point1 = e.latLng.lat() + ',' + e.latLng.lng();
+                    return;
+                }
+                if (point2 == null) {
+                    point2 = e.latLng.lat() + ',' + e.latLng.lng();
+                }
+
+                console.log(point1);
+                console.log(point2);
+
+                if (point1 != null && point2 != null) {
+                    // calculate direction for 2 points.
+                    directionsService.route({
+                        origin: point1,//來源
+                        destination: point2,//目的地
+                        travelMode: 'DRIVING',//旅行模式：自行開車
+                    }, function (response, status) {//取得兩點間路線
+                        console.log(response);
+                        var i=response.routes[0].legs[0].steps;
+                        var j=0;
+                        for(var z of i){
+                            if(z.instructions.indexOf('收費路段')>=0){
+                                j+=z.distance.value;
+                            }
+                        }
+                        var i=Math.floor(response.routes[0].legs[0].distance.value/1000);
+                        var textmoney=0;
+                        if(i<=1.5){
+                            textmoney=85;
+                        }else{
+                            textmoney=85+Math.floor((i-1.5)/0.25)*5;
+                        }
+                        document.getElementById("dirction1").innerText = "自行開車 , 時間 : " + response.routes[0].legs[0].duration.text + "成本："+Math.floor(response.routes[0].legs[0].distance.value/1000*5+j/1000*1.2) +"元, ( 高速公路需花費："+Math.floor(j/1000*1.2)+"元";
+                        document.getElementById("dirction2").innerText = "搭計程車 , 時間 : " + response.routes[0].legs[0].duration.text + "成本："+(textmoney+Math.floor(j/1000*1.2))+"元, ( 高速公路需花費："+Math.floor(j/1000*1.2)+"元";
+                        if (status === 'OK') {
+                            directionsDisplay.setDirections(response);//顯示回應於地圖上
+                        } else {
+                            window.alert('Directions request failed due to ' + status);
+                        }
+                    });
+                }
+                if (point1 != null && point2 != null) {
+                    // calculate direction for 2 points.
+                    directionsService.route({
+                        origin: point1,//來源
+                        destination: point2,//目的地
+                        travelMode: 'TRANSIT',//旅行模式：大眾運輸
+                    }, function (response, status) {//取得兩點間路線
+                        console.log(response);
+                        directionsDisplay.setDirections(response);
+                        var i=response.routes[0].legs[0].steps;
+                        var j=0;
+                        for(var z of i){
+                            if(z.travel_mode.indexOf('TRANSIT')>=0){
+                                j++;
+                            }
+                        }
+                        document.getElementById("dirction3").innerText = "大眾運輸 , 時間 : " + response.routes[0].legs[0].duration.text + ", 成本 : " + j*15+" 元";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

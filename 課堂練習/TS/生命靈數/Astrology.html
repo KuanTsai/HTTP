@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div style="margin-top:2cm" class="row">
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">生日</span>
+                    </div>
+                    <input id="year" style="text-align:center" type="text" class="form-control" aria-label="">
+                    <div class="input-group-append">
+                        <span class="input-group-text">年</span>
+                    </div>
+                    <input id="month" style="text-align:center" type="text" class="form-control" aria-label="">
+                    <div class="input-group-append">
+                        <span class="input-group-text">月</span>
+                    </div>
+                    <input id="day" style="text-align:center" type="text" class="form-control" aria-label="">
+                    <div class="input-group-append">
+                        <span class="input-group-text">日</span>
+                    </div>
+                    <button id="search" type="button" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">星座</span>
+                    </div>
+                    <input id="star" readonly style="text-align:center" type="text" class="form-control" aria-label="">
+                    <div class="input-group-append">
+                        <span class="input-group-text">生命靈數</span>
+                    </div>
+                    <input id="number" readonly style="text-align:center" type="text" class="form-control" aria-label="">
+                </div>
+                <div>
+                    <input id="text" readonly style="text-align:center" type="text" class="form-control" aria-label="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="./js/Astrology.js"></script>
+    <script>
+
+        $(function () {
+            $("#search").click(function () {
+                var y = $("#year").val();
+                var m = $("#month").val();
+                var d = $("#day").val();
+
+                const ans = new NumberlogyCalcuator(y, m, d);
+                $.ajax({
+                    url: "https://gist.githubusercontent.com/regionbbs/a4633c99d4f3d73c41538134b0b62162/raw/9b81dd8ae2bbe0b088d54c2118e5eb2d1021313f/" + ans.getAstrologyConstellationName() + ".json",
+                    type: "GET"
+                }).done(function (data) {
+                    var o = JSON.parse(data);
+                    $("#star").val(o.name);
+                    $("#number").val(ans.getLifeNumberology());
+                    $("#text").val(o.lookup[ans.getLifeNumberology() - 1]);
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-9 text-center">
+                <h3>稅額試算</h3>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="txtNetIncome" class="col-2 col-form-label text-right">所得淨額</label>
+            <div class="input-group col-6">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        $
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="txtNetIncome" />
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary" id="compute">
+                    計算
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxRate" class="col-3 col-form-label text-right">稅率</label>
+        <div class="input-group col-5">
+            <input type="text" class="form-control" readonly maxlength="5" id="txtTaxRate" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    $
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxAdjustment" class="col-3 col-form-label text-right">累進差額</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    $
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxAdjustment" />
+        </div>
+    </div>
+    </div>
+    <div class="form-group row">
+        <label for="txtTaxAmount" class="col-3 col-form-label text-right">應納稅額</label>
+        <div class="input-group col-5">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    $
+                </div>
+            </div>
+            <input type="text" class="form-control" readonly id="txtTaxAmount" />
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        //var array_rate = [0.05, 0.12, 0.2, 0.3, 0.4, 0.45];
+        //var array_rate2 = [0, 37800, 134600, 376600, 829600, 1345100];
+        var compute = document.getElementById("compute");
+        compute.onclick = function () {
+            var netincomes = document.getElementById("txtNetIncome").value;
+            getRates(netincomes, rate);
+        }
+        var array_rate3 = [{ person: 0.05, money: 0 }, { person: 0.12, money: 37800 }, { person: 0.2, money: 134600 },
+        { person: 0.3, money: 376600 }, { person: 0.4, money: 829600 }, { person: 0.45, money: 1345100 }];
+        var rate = function (x) {
+            if (x <= 540000) return 0;
+            if (x > 540000 && x <= 1210000) return 1;
+            if (x > 1210000 && x <= 2420000) return 2;
+            if (x > 2420000 && x <= 4530000) return 3;
+            if (x > 4530000 && x <= 10310000) return 4;
+            return 5;
+        }
+        //var netincomes = [437482, 609385, 938271, 1132785, 3090218, 6448293, 9938100, 10102837, 18902831];
+        function getRates(savings, rating) {
+            //for (var saving of netincomes) {
+            var rate = rating(savings);
+            document.getElementById("txtTaxRate").value = array_rate3[rate].person;
+            document.getElementById("txtTaxAdjustment").value = array_rate3[rate].money;
+            document.getElementById("txtTaxAmount").value = Math.floor(savings * (array_rate3[rate].person) - (array_rate3[rate].money));
+            //document.write(saving + "'s 稅率: " + array_rate[rate]+" 累進稅率: "+array_rate2[rate]);
+            console.log(savings + "'s 稅率: " + array_rate3[rate].person + " 累進稅率: " + array_rate3[rate].money);
+            console.log(savings * (array_rate3[rate].person) - (array_rate3[rate].money));
+            //}
+        }
+
+        //document.getElementById("txtNetIncome");//所得淨額
+        //document.getElementById("txtTaxRate");//稅率
+        //document.getElementById("txtTaxAdjustment");//累進差額
+        //document.getElementById("txtTaxAmount");//應納稅額
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h3>溫度轉換器 (C to F)</h3>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3 text-right">
+                <h5>輸入溫度 (C): </h5>
+            </div>
+            <div class="col-6">
+                <input type="text" id="inputC" class="form-control" value="32" />
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3 text-right">
+                <h5>結果 (F): </h5>
+            </div>
+            <div class="col-6">
+                <input type="text" id="outputF" readonly class="form-control" />
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+    </div>
+    <script>
+        /*var data = {
+            tempc: 0, tempf: 0
+        };//object
+        data.tempc = prompt("請輸入攝氏溫度");
+        data.tempf = (data.tempc * 1.8) + 32;
+        alert("攝氏溫度" + data.tempc + "轉華氏溫度為" + data.tempf);
+        var tempf = prompt("請輸入華氏溫度");
+        var tempc = (tempf - 32) / 1.8;
+        alert("華氏溫度" + tempf + "轉攝氏溫度為" + tempc);*/
+        var inputnum = prompt("請輸入攝氏溫度。");
+        document.getElementById("inputC").value = inputnum;
+        var tempC = parseInt(inputnum);
+        var tempF = (tempC * 1.8) + 32;
+        document.getElementById("outputF").value = tempF;
+    </script>
+</body>
+
+</html>
