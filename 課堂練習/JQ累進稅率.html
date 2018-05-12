@@ -77,7 +77,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(function () {//初始化函數
+        $(function () {
             $("#compute").click(function () {
                 var incomeText = $("#txtNetIncome").val();
                 if (isNaN(parseInt(incomeText))) {
@@ -87,12 +87,6 @@
                 getRates(incomeText, rate);
             });
         })
-        /*for(var item of array){
-            call funtion(item);
-        }
-        $.each(array,function(item){
-
-        })*/
 
         var array_rate3 = [{ person: 0.05, money: 0 }, { person: 0.12, money: 37800 }, { person: 0.2, money: 134600 },
         { person: 0.3, money: 376600 }, { person: 0.4, money: 829600 }, { person: 0.45, money: 1345100 }];
@@ -104,26 +98,15 @@
             if (x > 4530000 && x <= 10310000) return 4;
             return 5;
         }
-        //var netincomes = [437482, 609385, 938271, 1132785, 3090218, 6448293, 9938100, 10102837, 18902831];
         function getRates(savings, rating) {
-            //for (var saving of netincomes) {
             var rate = rating(savings);
             $("#txtTaxRate").val(array_rate3[rate].person);
             $("#txtTaxAdjustment").val(array_rate3[rate].money);
             $("#txtTaxAmount").val(Math.floor(savings * (array_rate3[rate].person) - (array_rate3[rate].money)));
-            //document.write(saving + "'s 稅率: " + array_rate[rate]+" 累進稅率: "+array_rate2[rate]);
             console.log(savings + "'s 稅率: " + array_rate3[rate].person + " 累進稅率: " + array_rate3[rate].money);
             console.log(savings * (array_rate3[rate].person) - (array_rate3[rate].money));
-            //}
         }
-
-        //document.getElementById("txtNetIncome");//所得淨額
-        //document.getElementById("txtTaxRate");//稅率
-        //document.getElementById("txtTaxAdjustment");//累進差額
-        //document.getElementById("txtTaxAmount");//應納稅額
-
-
-    </script>
+   </script>
 </body>
 
 </html>

@@ -20,7 +20,6 @@
         var nowdate = time.toLocaleDateString();
         var now = time.toLocaleTimeString();
 
-        //var p=$("<p>").text(nowdate+now);
         $("body").append($("<p>").text(nowdate + now));
         $("body").append($("<button>").prop("id", "stopbutton").text("stop"));
         $("body").append($("<button>").prop("id", "restart").text("restart"));
@@ -31,7 +30,6 @@
                 var now = time.toLocaleTimeString();
 
                 $("p").text(nowdate + now);
-                //updata time on page.
             }, 1000);
         }
 
@@ -41,13 +39,11 @@
             var now = time.toLocaleTimeString();
 
             $("p").text(nowdate + now);
-            //updata time on page.
         }, 1000);
 
 
         $("#stopbutton").click(function (e) {
             window.clearInterval(timer);
-            //$(e.target).prop("disabled", "true");
         })
 
         $("#restart").click(function (e) {

@@ -18,7 +18,7 @@ class NumberlogyCalcuator implements INumerologyCalculator {
         return this.getLifeNumerologyInternal(str);
     }
 
-    private getLifeNumerologyInternal(str: string): number {//在裡面宣告私有方法.
+    private getLifeNumerologyInternal(str: string): number {
         let life=0;
             for (var i = 0; i < str.length; i++) {
                 life += parseInt(str[i]);
