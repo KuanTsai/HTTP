@@ -3,11 +3,9 @@
 
 <head>
     <title>Title</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <style>
@@ -220,7 +218,7 @@
                     zoom: 15
                 });
 
-                map.addListener('click', function (e) {//點擊地圖放上地標&座標
+                map.addListener('click', function (e) {
                     map.setCenter(e.latLng);
 
                     if (marker != null) {
@@ -233,16 +231,13 @@
                         title: e.latLng.toString()
                     });
                     var geocoder = new google.maps.Geocoder();
-                    // 傳入 latLng 資訊至 geocoder.geocode
                     geocoder.geocode({ 'latLng': marker.position }, function (results, status) {
                         if (status === google.maps.GeocoderStatus.OK) {
-                            // 如果有資料就會回傳
                             if (results) {
                                 console.log(results[0].formatted_address);
                                 document.getElementById("useraddress").value = results[0].formatted_address;
                             }
                         }
-                        // 經緯度資訊錯誤
                         else {
                             alert("Reverse Geocoding failed because: " + status);
                         }
@@ -263,27 +258,25 @@
             month[10] = "November";
             month[11] = "December";
             var today = new Date();
-            //console.log(today);
             var thismonth = today.getMonth();
-            //console.log(thismonth);
             $("#mouths").html(month[thismonth] + " " + today.getFullYear());
 
 
             var drawPicker = function (x) {
-                var getmonthdays = function (x) {//月最後一天
+                var getmonthdays = function (x) {
                     var days = new Date(x);
                     var years = days.getFullYear();
                     var mouths = days.getMonth() + 1;
                     var todays = new Date(years, mouths, 0);
                     return todays;
-                    //console.log(todays);//Mon Apr 30 2018 00:00:00 GMT+0800 (台北標準時間)
+                    //console.log(todays);
                 }
-                var getfirstdays = function (x) {//這個月第一天是星期幾
+                var getfirstdays = function (x) {
                     var days = new Date(x);
-                    days.setDate(1);//將日期設為一號
+                    days.setDate(1);
                     var todays = days.getDay();
                     return todays;
-                    //console.log(todays);//0
+                    //console.log(todays);
                 }
                 var getweek = function (x) {
                     var days = new Date(x);
@@ -362,7 +355,6 @@
                 drawPicker(newdate);
                 lidata();
             });
-            //資料結構
             $("#datainput").click(function () {
                 schedule();
             });
@@ -371,7 +363,7 @@
                 function _uuid() {
                     var d = Date.now();
                     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
-                        d += performance.now(); //use high-precision timer if available
+                        d += performance.now(); 
                     }
                     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                         var r = (d + Math.random() * 16) % 16 | 0;
@@ -383,10 +375,10 @@
                 var userday = new Date($("#userday").val());
                 var scheduleItem = {
                     userday: month[userday.getMonth()] + userday.getDate(),
-                    fromHR: $("#fromHR").val(),//開始時間
-                    toHR: $("#toHR").val(),//結束時間
-                    subject: $("#subject").val(),//行事曆主題
-                    color: $("#usercolor").val(),//使用者自訂色彩
+                    fromHR: $("#fromHR").val(),
+                    toHR: $("#toHR").val(),
+                    subject: $("#subject").val(),
+                    color: $("#usercolor").val(),
                     address: $("#useraddress").val()
                 };
                 var obj = JSON.stringify(scheduleItem);
@@ -418,7 +410,7 @@
                             center: { lat: location.lat(), lng: location.lng() },
                             zoom: 15
                         });
-                        var markerr = new google.maps.Marker({//放上地標
+                        var markerr = new google.maps.Marker({
                             position: { lat: location.lat(), lng: location.lng() },
                             map: limap,
                             title: liadress
@@ -430,10 +422,10 @@
                 $("#lichange").click(function () {
                     var scheduleItem = {
                         userday: JSON.parse(localStorage[li.id]).userday,
-                        fromHR: $("#lifromHR").val(),//開始時間
-                        toHR: $("#litoHR").val(),//結束時間
-                        subject: $("#lisubject").val(),//行事曆主題
-                        color: $("#liusercolor").val(),//使用者自訂色彩
+                        fromHR: $("#lifromHR").val(),
+                        toHR: $("#litoHR").val(),
+                        subject: $("#lisubject").val(),
+                        color: $("#liusercolor").val(),
                         address: $("#liaddress").val()
                     };
                     var obj = JSON.stringify(scheduleItem);
@@ -477,12 +469,12 @@
             }
             lidata();
             var scheduleItem = {
-                key: "",//行事曆鍵值
+                key: "",
                 userday: "",
-                fromHR: "",//開始時間
-                toHR: "",//結束時間
-                subject: "",//行事曆主題
-                color: "",//使用者自訂色彩
+                fromHR: "",
+                toHR: "",
+                subject: "",
+                color: "",
                 address: ""
             };
 

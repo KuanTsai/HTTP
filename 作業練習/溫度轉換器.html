@@ -103,36 +103,12 @@
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
-        /*document.getElementsByClassName("container").length
-        document.getElementsByClassName("row").length
-        document.getElementsByTagName("div").length
-        document.getElementsByTagName("button")[12].innerText
-        document.querySelectorAll("input[type='text']")
-        document.querySelectorAll("button[type='button']")
-        var nodes=document.querySelectorAll("button");
-            for(var i=0;i<nodes.length;i++)
-            {
-                console.log(nodes[i].innerText);
-            }
-        var newlement=document.createElement("div");
-        newlement.className="col-2";
-        var newbutton=document.createElement("button");
-        newbutton.innerText="TWT";
-        newlement.className="btn btn-light rounded-0 border";
-    
-        newlement.appendChild(newbutton);
-        var lostDiv=document.getElementById("lostDiv");
-        lostDiv.appendChild(newlement);*/
-
-        /*newlement.innerHTML()*/
         var buttons = document.getElementsByTagName("button");
         for (var i = 0; i < buttons.length; i++) {
             var button = buttons[i];
             button.onclick = function () {
-                var btn = event.srcElement;//來源
+                var btn = event.srcElement;
                 document.getElementById("txt").value += btn.innerHTML;
             }
         }

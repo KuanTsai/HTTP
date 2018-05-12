@@ -3,11 +3,9 @@
 
 <head>
     <title>Title</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
@@ -48,7 +46,7 @@
                 });
 
             directionsService = new google.maps.DirectionsService();
-            directionsDisplay = new google.maps.DirectionsRenderer();//有幾個地圖
+            directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(map);//設定要顯示的地圖
             directionsDisplay.setPanel(document.getElementById('dirction'));
 
@@ -71,7 +69,6 @@
                 console.log(point2);
 
                 if (point1 != null && point2 != null) {
-                    // calculate direction for 2 points.
                     directionsService.route({
                         origin: point1,//來源
                         destination: point2,//目的地
@@ -102,12 +99,11 @@
                     });
                 }
                 if (point1 != null && point2 != null) {
-                    // calculate direction for 2 points.
                     directionsService.route({
-                        origin: point1,//來源
-                        destination: point2,//目的地
-                        travelMode: 'TRANSIT',//旅行模式：大眾運輸
-                    }, function (response, status) {//取得兩點間路線
+                        origin: point1,
+                        destination: point2,
+                        travelMode: 'TRANSIT',
+                    }, function (response, status) {
                         console.log(response);
                         directionsDisplay.setDirections(response);
                         var i=response.routes[0].legs[0].steps;

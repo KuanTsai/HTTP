@@ -205,8 +205,6 @@
                 </div>
             </div>
         </div>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYa2lWEDFEOGah0x1xBcIc-km4rg7B3Y&callback=initMap" async
             defer></script>
         <script type="text/javascript">
@@ -219,7 +217,7 @@
                     zoom: 15
                 });
 
-                map.addListener('click', function (e) {//點擊地圖放上地標&座標
+                map.addListener('click', function (e) {
                     map.setCenter(e.latLng);
 
                     if (marker != null) {
@@ -232,16 +230,13 @@
                         title: e.latLng.toString()
                     });
                     var geocoder = new google.maps.Geocoder();
-                    // 傳入 latLng 資訊至 geocoder.geocode
                     geocoder.geocode({ 'latLng': marker.position }, function (results, status) {
                         if (status === google.maps.GeocoderStatus.OK) {
-                            // 如果有資料就會回傳
                             if (results) {
                                 console.log(results[0].formatted_address);
                                 document.getElementById("useraddress").value = results[0].formatted_address;
                             }
                         }
-                        // 經緯度資訊錯誤
                         else {
                             alert("Reverse Geocoding failed because: " + status);
                         }
@@ -262,27 +257,23 @@
             month[10] = "November";
             month[11] = "December";
             var today = new Date();
-            //console.log(today);
             var thismonth = today.getMonth();
-            //console.log(thismonth);
             document.getElementById("mouths").innerHTML=month[thismonth] + " " + today.getFullYear();
 
 
             var drawPicker = function (x) {
-                var getmonthdays = function (x) {//月最後一天
+                var getmonthdays = function (x) {
                     var days = new Date(x);
                     var years = days.getFullYear();
                     var mouths = days.getMonth() + 1;
                     var todays = new Date(years, mouths, 0);
                     return todays;
-                    //console.log(todays);//Mon Apr 30 2018 00:00:00 GMT+0800 (台北標準時間)
                 }
-                var getfirstdays = function (x) {//這個月第一天是星期幾
+                var getfirstdays = function (x) {
                     var days = new Date(x);
-                    days.setDate(1);//將日期設為一號
+                    days.setDate(1);
                     var todays = days.getDay();
                     return todays;
-                    //console.log(todays);//0
                 }
                 var getweek = function (x) {
                     var days = new Date(x);
@@ -303,11 +294,8 @@
                 }
                 var days = new Date(x);
                 var monthdays = getmonthdays(x);
-                //console.log(monthdays);
                 var firstdays = getfirstdays(x);
-                //console.log(firstdays);
                 var week = getweek(x);
-                //console.log(week);
                 days.setDate(1);
                 var k = 0, a = 0, b = 0, c = 0;
                 for (var i = 0; i < week; i++) {
@@ -318,7 +306,6 @@
                         var ul = document.createElement("ul");
                         if (a < firstdays) {
                             a++;
-                            //console.log(firstdays);
                             var tempDate = new Date(days);
                             tempDate.setDate(a - firstdays);
                             newDate.className = "unshow";
@@ -326,7 +313,6 @@
                         }
                         else if (b < monthdays.getDate()) {
                             b++;
-                            //console.log(b);
                             newDate.className = "show";
                             newDate.innerText = new Date(days).getDate();
                             days.setDate(b + 1);
@@ -336,12 +322,8 @@
                             newDate.className = "unshow";
                             newDate.innerText = new Date(days).getDate();
                             days.setDate(days.getDate() + 1);
-                            //console.log(days);
                         }
                         ul.id = month[new Date(days).getMonth()] + newDate.innerText;
-                        //if (c == (7 - monthdays.getDay())) {
-                        //    break;
-                        //}
                         newDate.appendChild(ul);
                         newRow.appendChild(newDate);
                     }
@@ -372,7 +354,6 @@
             } else {
                 console.log("Sorry! No Web Storage support..");
             }
-            //var z=0;
             document.getElementById("datainput").onclick = function () {
                 schedule();
             }
@@ -381,7 +362,7 @@
                 function _uuid() {
                     var d = Date.now();
                     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
-                        d += performance.now(); //use high-precision timer if available
+                        d += performance.now(); 
                     }
                     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                         var r = (d + Math.random() * 16) % 16 | 0;
@@ -393,10 +374,10 @@
                 var userday = new Date(document.getElementById("userday").value);
                 var scheduleItem = {
                     userday: month[userday.getMonth()] + userday.getDate(),
-                    fromHR: document.getElementById("fromHR").value,//開始時間
-                    toHR: document.getElementById("toHR").value,//結束時間
-                    subject: document.getElementById("subject").value,//行事曆主題
-                    color: document.getElementById("usercolor").value,//使用者自訂色彩
+                    fromHR: document.getElementById("fromHR").value,
+                    toHR: document.getElementById("toHR").value,
+                    subject: document.getElementById("subject").value,
+                    color: document.getElementById("usercolor").value,
                     address: document.getElementById("useraddress").value
                 };
                 var obj = JSON.stringify(scheduleItem);
@@ -425,17 +406,14 @@
                     if (status == google.maps.GeocoderStatus.OK) {
 
                         var location = result[0].geometry.location;
-                        //ReadLatlng.lat = results[0].geometry.location.lat();
-                        //ReadLatlng.lng = results[0].geometry.location.lng();
-                        console.log(location.lat()); //緯度
+                        console.log(location.lat()); 
                         console.log(location.lng());
-                        // location.Qa 經度
 
                         var limap = new google.maps.Map(document.getElementById('limap'), {
                             center: { lat: location.lat(), lng: location.lng() },
                             zoom: 15
                         });
-                        var markerr = new google.maps.Marker({//放上地標
+                        var markerr = new google.maps.Marker({
                             position: { lat: location.lat(), lng: location.lng() },
                             map: limap,
                             title: liadress
@@ -447,10 +425,10 @@
                 document.getElementById("lichange").onclick = function () {
                     var scheduleItem = {
                         userday: JSON.parse(localStorage[li.id]).userday,
-                        fromHR: document.getElementById("lifromHR").value,//開始時間
-                        toHR: document.getElementById("litoHR").value,//結束時間
-                        subject: document.getElementById("lisubject").value,//行事曆主題
-                        color: document.getElementById("liusercolor").value,//使用者自訂色彩
+                        fromHR: document.getElementById("lifromHR").value,
+                        toHR: document.getElementById("litoHR").value,
+                        subject: document.getElementById("lisubject").value,
+                        color: document.getElementById("liusercolor").value,
                         address: document.getElementById("liaddress").value
                     };
                     var obj = JSON.stringify(scheduleItem);
@@ -472,12 +450,9 @@
             }
 
             var lidata = function () {
-                //var all_li = document.getElementsByClassName("myli");
-                //var all_ul = document.getElementsByTagName("ul");
                 for (var item in localStorage) {
                     var newschedule = JSON.parse(localStorage[item]);
                     var z = document.getElementById(newschedule.userday);
-                    //console.log(z);
                     if (z == null) {
 
                     } else if (z.id == newschedule.userday) {
@@ -502,12 +477,12 @@
 
 
             var scheduleItem = {
-                key: "",//行事曆鍵值
+                key: "",
                 userday: "",
-                fromHR: "",//開始時間
-                toHR: "",//結束時間
-                subject: "",//行事曆主題
-                color: "",//使用者自訂色彩
+                fromHR: "",
+                toHR: "",
+                subject: "",
+                color: "",
                 address: ""
             };
 

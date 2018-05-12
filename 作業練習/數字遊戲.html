@@ -48,8 +48,6 @@
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
         var gamestart = document.getElementById("gamestart");
         var giveup = document.getElementById("giveup");
@@ -69,7 +67,7 @@
         }
 
         giveup.onclick = function () {
-            location.reload();//網站重整F5
+            location.reload();
         }
 
         answer.onclick = function () {
@@ -89,11 +87,9 @@
                     else {
                         b++;
                     }
-                } //console.log(inputnum[i]);
+                } 
             } 
 
-            //console.log(" a " + a + " , b " + b);
-            //console.log("num" + inputnum);
             
             var li = document.createElement("li");
             li.className = "list-group-item d-flex align-items-center";

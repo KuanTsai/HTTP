@@ -41,7 +41,6 @@
                 var waypts = [];
                 for (var i = 1; i < point.length - 1; i++) {
                     var data={
-                        //order: 排序
                         location:point[i],
                         stopover: true
                     }
@@ -50,13 +49,13 @@
                 console.log(point);
                 console.log(waypts);
                 directionsService.route({
-                    origin: point[0],//來源
-                    destination: point[point.length-1],//目的地
+                    origin: point[0],
+                    destination: point[point.length-1],
                     waypoints: waypts,
-                    travelMode: 'DRIVING',//旅行模式：自行開車
+                    travelMode: 'DRIVING',
                 }, function (response, status) {
                     if (status === 'OK') {
-                        directionsDisplay.setDirections(response);//顯示回應於地圖上
+                        directionsDisplay.setDirections(response);
                     } else {
                         window.alert('Directions request failed due to ' + status);
                     }
@@ -69,18 +68,16 @@
             request.onload = function () {
                 var items = JSON.parse(this.responseText);
                 for (var item of items) {
-                    marker = new google.maps.Marker({//放上地標
+                    marker = new google.maps.Marker({
                         position: { lat: parseFloat(item.緯度), lng: parseFloat(item.經度) },
                         map: map,
                         icon: "https://png.icons8.com/windows/2266EE/20/home.png",
                         title: item.旅館名稱,
                     });
-                    marker.addListener('click', function (e) {//點擊地圖放上地標&座標
+                    marker.addListener('click', function (e) {
                         map.setCenter(e.latLng);
-                        //console.log(e.latLng);
                         var data = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                         point.push(data);
-                        //console.log(point);
                     });
                 }
             };
@@ -93,24 +90,19 @@
                 for (var item of items) {
                     for (var localitem in localStorage) {
                         if (localitem == item.地址) {
-                            //console.log("localitem" + localitem + "item.地址" + item.地址);
-                            var dataaddress = JSON.parse(localStorage[localitem]);//localitem=地址(key),key找到資料經緯
-                            //console.log(dataaddress);
+                            var dataaddress = JSON.parse(localStorage[localitem]);
                             var lat = dataaddress.results[0].geometry.location.lat;
                             var lng = dataaddress.results[0].geometry.location.lng;
-                            //console.log("lat" + lat);
-                            //console.log("lng" + lng);
-                            marker = new google.maps.Marker({//放上地標
+                            marker = new google.maps.Marker({
                                 position: { lat: lat, lng: lng },
                                 map: map,
                                 icon: "https://png.icons8.com/material/screenshot.png",
                                 title: item.景點名稱,
                             });
-                            marker.addListener('click', function (e) {//點擊地圖放上地標&座標
+                            marker.addListener('click', function (e) {
                                 map.setCenter(e.latLng);
                                 var data = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                                 point.push(data);
-                                //console.log(e.latLng.lat());
                             });
                         }
                     }
@@ -126,25 +118,19 @@
                 for (var item of items) {
                     for (var localitem in localStorage) {
                         if (localitem == item.地址) {
-                            //console.log("localitem" + localitem + "item.地址" + item.地址);
-                            var dataaddress = JSON.parse(localStorage[localitem]);//localitem=地址(key),key找到資料經緯
-                            //console.log(dataaddress);
+                            var dataaddress = JSON.parse(localStorage[localitem]);
                             var lat = dataaddress.results[0].geometry.location.lat;
                             var lng = dataaddress.results[0].geometry.location.lng;
-                            //console.log("lat" + lat);
-                            //console.log("lng" + lng);
-                            marker = new google.maps.Marker({//放上地標
+                            marker = new google.maps.Marker({
                                 position: { lat: lat, lng: lng },
                                 map: map,
                                 icon: "https://png.icons8.com/material/F34F43/20/food.png",
                                 title: item.店家名稱,
                             });
-                            marker.addListener('click', function (e) {//點擊地圖放上地標&座標
+                            marker.addListener('click', function (e) {
                                 map.setCenter(e.latLng);
-                                //console.log(e.latLng);
                                 var data = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                                 point.push(data);
-                                //console.log(point);
                             });
                         }
                     }
