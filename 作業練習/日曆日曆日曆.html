@@ -10,10 +10,43 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
     <style>
+        #thead {
+            background-color: #fdbee3;
+        }
+
+        #mouths {
+            font-size: 22px;
+            color: #f532a4;
+            font-weight: bold;
+        }
+
+        .bgpink {
+            background-color: #fdbee3;
+            color: #FFF;
+            border: 0ch;
+        }
+
+        .bgpink:hover {
+            color: #FFF;
+            background: #f532a4;
+        }
+
         .unshow {
-            color: #9ca1a8;
-            background-color: #bebebe;
+            color: #ff80ca;
+            background-color: #fdbee3;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #f532a4;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid #f7abd6;
         }
 
         td {
@@ -24,10 +57,6 @@
 
         .btn-block {
             background-color: rgba(255, 255, 255, 0);
-        }
-
-        .buttondate:hover {
-            background-color: rgba(220, 20, 60, 0);
         }
 
         ul {
@@ -43,7 +72,7 @@
         }
 
         li:hover {
-            background-color: crimson !important;
+            background-color: #f532a4 !important;
             color: white;
             font-weight: bolder;
         }
@@ -64,27 +93,28 @@
     <div class="container">
         <div class="row mt-2">
             <div class="col-2">
-                <button type="button" class="btn btn-light" id="btnlast">
-                    < </button>
+                <button type="button" class="btn btn-light bgpink" id="btnlast">
+                    <i class="fas fa-angle-left"></i>
+                </button>
             </div>
-
             <div class="col-8 text-center">
-                <span class="text-center" id="mouths">2018</span>
-                <button type="button" class="btn buttondate rounded-0" data-toggle="modal" data-target="#asd">行事曆</button>
+                <span class="text-center mr-2" id="mouths"></span>
+                <button type="button" class="btn bgpink rounded-circle" data-toggle="modal" data-target="#asd">
+                    <i class="fas fa-plus"></i>
+                </button>
 
             </div>
             <div class="col-2 text-right">
-                <button type="button" class="btn btn-light" id="btnnext">
-                    >
+                <button type="button" class="btn btn-light bgpink" id="btnnext">
+                    <i class="fas fa-angle-right"></i>
                 </button>
             </div>
-
         </div>
-        <div class="row">
+        <div class="row mt-1">
             <div class="col">
                 <table class="table table-bordered text-center" id="dateZone">
                     <thead>
-                        <tr>
+                        <tr id="thead">
                             <th>SUN</th>
                             <th>MON</th>
                             <th>TUE</th>
@@ -258,7 +288,7 @@
             month[11] = "December";
             var today = new Date();
             var thismonth = today.getMonth();
-            document.getElementById("mouths").innerHTML=month[thismonth] + " " + today.getFullYear();
+            document.getElementById("mouths").innerHTML = month[thismonth] + " " + today.getFullYear();
 
 
             var drawPicker = function (x) {
@@ -362,7 +392,7 @@
                 function _uuid() {
                     var d = Date.now();
                     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
-                        d += performance.now(); 
+                        d += performance.now();
                     }
                     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                         var r = (d + Math.random() * 16) % 16 | 0;
@@ -406,7 +436,7 @@
                     if (status == google.maps.GeocoderStatus.OK) {
 
                         var location = result[0].geometry.location;
-                        console.log(location.lat()); 
+                        console.log(location.lat());
                         console.log(location.lng());
 
                         var limap = new google.maps.Map(document.getElementById('limap'), {
