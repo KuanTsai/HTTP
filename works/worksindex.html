@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/items/demos_assets/jquery.min.js"></script>
+    <script src="/items/demos_assets/jquery.dropotron.min.js"></script>
+    <script src="/items/demos_assets/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <title>Kuan作品集</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
+        @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,900,300italic,600italic,900italic");
+        html,
+        body,
+        div,
+        span,
+        p,
+        a,
+        img,
+        small,
+        strong,
+        ul,
+        li,
+        label,
+        article,
+        footer,
+        header,
+        section {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        article,
+        footer,
+        header,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            -webkit-text-size-adjust: none;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        @-ms-viewport {
+            width: device-width;
+        }
+
+        body {
+            -ms-overflow-style: scrollbar;
+        }
+
+        @media screen and (max-width: 480px) {
+            html,
+            body {
+                min-width: 320px;
+            }
+        }
+
+        body {
+            background-color: #000;
+            background-image: url("./image/bg.jpg");
+            background-size: cover;
+            background-position: top left, top left, bottom left;
+            background-repeat: repeat, no-repeat, no-repeat;
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                background-image: url("images/overlay.png");
+                background-size: auto;
+                background-position: top left;
+                background-repeat: repeat;
+            }
+        }
+
+        html {
+            font-size: 14pt;
+        }
+
+        @media screen and (max-width: 1680px) {
+            html {
+                font-size: 12pt;
+            }
+        }
+
+        @media screen and (max-width: 1280px) {
+            html {
+                font-size: 11pt;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            html {
+                font-size: 10pt;
+            }
+        }
+
+        body {
+            color: #7a7d86;
+        }
+
+        body {
+            font-family: 微軟正黑體;
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        a {
+            -moz-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border-bottom: dotted 1px;
+            text-decoration: none;
+        }
+
+        a:before,
+        a strong {
+            -moz-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+        }
+
+        a:hover:before,
+        a:hover strong {
+            color: inherit;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0 0 2rem 0;
+        }
+
+        a {
+            color: #7a7d86;
+        }
+
+        a:hover {
+            color: #e59dc4;
+        }
+
+        strong {
+            color: #7a7d86;
+        }
+
+        .button {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            -moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            -webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            -ms-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+            background-color: transparent;
+            border-radius: 3rem;
+            border: 0;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            height: 3rem;
+            line-height: calc(3rem - 1px);
+            padding: 0 2rem;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        button:before,
+        .button:before {
+            -moz-transition: color 0.2s ease-in-out;
+            -webkit-transition: color 0.2s ease-in-out;
+            -ms-transition: color 0.2s ease-in-out;
+            transition: color 0.2s ease-in-out;
+        }
+
+        button.icon:before,
+        .button.icon:before {
+            margin-right: 0.75rem;
+        }
+
+
+        button.next,
+        .button.next {
+            text-decoration: none;
+        }
+
+        button.next:before,
+        .button.next:before {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-transform: none !important;
+        }
+
+        button.next:before,
+        .button.next:before {
+            content: '\f178';
+            float: right;
+            line-height: inherit;
+            margin-left: 0.75rem;
+        }
+
+        .button.small {
+            font-size: 0.9rem;
+            height: 2.625rem;
+            line-height: calc(2.625rem - 1px);
+            padding: 0 1.5rem;
+        }
+
+        .button.small.next:before {
+            margin-left: 0.5rem;
+        }
+
+        .button {
+            color: #7a7d86 !important;
+            box-shadow: inset 0 0 0 3px #dde1eb;
+        }
+
+        .button.next:before {
+            color: #dde1eb;
+        }
+
+        .button:hover {
+            background-color: rgba(229, 157, 196, 0.1);
+            box-shadow: inset 0 0 0 3px #e59dc4;
+            color: #e59dc4 !important;
+        }
+
+        .button:hover:before {
+            color: inherit;
+        }
+
+        .button:active {
+            background-color: rgba(229, 157, 196, 0.35);
+            box-shadow: inset 0 0 0 3px #e59dc4;
+            color: #e59dc4 !important;
+        }
+
+        .button:active:before {
+            color: inherit;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+        }
+
+        label {
+            color: #7a7d86;
+        }
+
+        .icon {
+            text-decoration: none;
+            position: relative;
+            border-bottom: none;
+        }
+
+        .icon:before {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-transform: none !important;
+        }
+
+        .icon>.label {
+            display: none;
+        }
+
+        .image {
+            display: inline-block;
+            position: relative;
+            border: 0;
+        }
+
+        .image img {
+            display: block;
+        }
+
+        .image.filtered {
+            position: relative;
+        }
+
+        a.image {
+            overflow: hidden;
+        }
+
+        a.image img {
+            -moz-transition: -moz-transform 0.2s ease;
+            -webkit-transition: -webkit-transform 0.2s ease;
+            -ms-transition: -ms-transform 0.2s ease;
+            transition: transform 0.2s ease;
+        }
+
+        a.image:hover img {
+            -moz-transform: scale(1.075);
+            -webkit-transform: scale(1.075);
+            -ms-transform: scale(1.075);
+            transform: scale(1.075);
+        }
+
+        ul {
+            list-style: disc;
+            margin: 0 0 2rem 0;
+            padding-left: 1rem;
+        }
+
+        ul li {
+            padding-left: 0.5rem;
+        }
+
+        ul.icons {
+            cursor: default;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.icons li {
+            display: inline-block;
+            padding: 0 1rem 0 0;
+        }
+
+        ul.icons li:last-child {
+            padding-right: 0;
+        }
+
+        ul.icons li .icon:before {
+            font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 736px) {
+            ul.icons li {
+                padding: 0 0.75rem 0 0;
+            }
+            ul.icons li .icon:before {
+                font-size: 1.25rem;
+            }
+        }
+
+        ul.actions {
+            cursor: default;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.actions li {
+            display: inline-block;
+            padding: 0 1rem 0 0;
+            vertical-align: middle;
+        }
+
+        ul.actions li:last-child {
+            padding-right: 0;
+        }
+
+        ul.actions.small li {
+            padding: 0 0.5rem 0 0;
+        }
+
+        ul.actions.vertical li {
+            display: block;
+            padding: 1rem 0 0 0;
+        }
+
+        ul.actions.vertical li:first-child {
+            padding-top: 0;
+        }
+
+        ul.actions.vertical li>* {
+            margin-bottom: 0;
+        }
+
+        ul.actions.vertical.small li {
+            padding: 0.5rem 0 0 0;
+        }
+
+        ul.actions.vertical.small li:first-child {
+            padding-top: 0;
+        }
+
+        header p {
+            position: relative;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .features {
+            width: 100%;
+            margin: 2.5rem 0;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            -moz-flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -moz-align-items: stretch;
+            -webkit-align-items: stretch;
+            -ms-align-items: stretch;
+            align-items: stretch;
+            text-align: center;
+        }
+
+        .features>* {
+            -moz-flex-shrink: 1;
+            -webkit-flex-shrink: 1;
+            -ms-flex-shrink: 1;
+            flex-shrink: 1;
+            -moz-flex-grow: 0;
+            -webkit-flex-grow: 0;
+            -ms-flex-grow: 0;
+            flex-grow: 0;
+        }
+
+        .features>* {
+            width: 33.33333%;
+        }
+
+        .features>* {
+            padding: 4rem;
+            width: 33.33333%;
+        }
+
+        .features>section {
+            border-style: solid;
+            border-left-width: 1px;
+            border-top-width: 1px;
+        }
+
+        .features>section> :last-child {
+            margin-bottom: 0;
+        }
+
+        .features>section:nth-child(3n - 2) {
+            border-left-width: 0;
+        }
+
+        .features>section:nth-child(-n + 3) {
+            border-top-width: 0;
+        }
+
+        .features>section h3 {
+            font-size: 1.25rem;
+            margin: 0 0 0.65rem 0;
+        }
+
+        @media screen and (max-width: 980px) {
+            .features>* {
+                width: 50%;
+            }
+            .features>* {
+                padding: 3rem;
+                width: 50%;
+            }
+            .features>section:nth-child(3n - 2) {
+                border-left-width: 1px;
+            }
+            .features>section:nth-child(-n + 3) {
+                border-top-width: 1px;
+            }
+            .features>section:nth-child(2n - 1) {
+                border-left-width: 0;
+            }
+            .features>section:nth-child(-n + 2) {
+                border-top-width: 0;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .features>* {
+                width: 100%;
+            }
+            .features>* {
+                padding: 3rem;
+                width: 100%;
+            }
+            .features>section:nth-child(2n - 1) {
+                border-left-width: 1px;
+            }
+            .features>section:nth-child(-n + 2) {
+                border-top-width: 1px;
+            }
+            .features>section:nth-child(n) {
+                border-left-width: 0;
+            }
+            .features>section:nth-child(-n + 1) {
+                border-top-width: 0;
+            }
+        }
+
+        .features>section {
+            border-color: #dde1eb;
+        }
+
+        .posts {
+            width: 100%;
+            margin: 0 0 2rem 0;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            -moz-flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -moz-align-items: stretch;
+            -webkit-align-items: stretch;
+            -ms-align-items: stretch;
+            align-items: stretch;
+            text-align: center;
+        }
+
+        .posts article .image {
+            display: block;
+            width: 100%;
+            margin: 0 0 2rem 0;
+        }
+
+        .posts article .image img {
+            width: 100%;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .posts article> :last-child {
+            margin-bottom: 0;
+        }
+
+        .posts>* {
+            -moz-flex-shrink: 1;
+            -webkit-flex-shrink: 1;
+            -ms-flex-shrink: 1;
+            flex-shrink: 1;
+            -moz-flex-grow: 0;
+            -webkit-flex-grow: 0;
+            -ms-flex-grow: 0;
+            flex-grow: 0;
+        }
+
+        .posts>* {
+            width: 33.33333%;
+        }
+
+        .posts>* {
+            padding: 1.5rem;
+            width: calc(33.33333% + 1rem);
+        }
+
+        .posts> :nth-child(-n + 3) {
+            padding-top: 0;
+        }
+
+        .posts> :nth-last-child(-n + 3) {
+            padding-bottom: 0;
+        }
+
+        .posts> :nth-child(3n + 1) {
+            padding-left: 0;
+        }
+
+        .posts> :nth-child(3n) {
+            padding-right: 0;
+        }
+
+        .posts> :nth-child(3n + 1),
+        .posts> :nth-child(3n) {
+            width: calc(33.33333% + -0.5rem);
+        }
+
+        @media screen and (max-width: 980px) {
+            .posts {
+                -moz-justify-content: center;
+                -webkit-justify-content: center;
+                -ms-justify-content: center;
+                justify-content: center;
+            }
+            .posts>* {
+                width: 50%;
+            }
+            .posts>* {
+                padding: 1.5rem;
+                width: calc(33.33333% + 1rem);
+            }
+            .posts> :nth-child(-n + 3) {
+                padding-top: 1.5rem;
+            }
+            .posts> :nth-last-child(-n + 3) {
+                padding-bottom: 1.5rem;
+            }
+            .posts> :nth-child(3n + 1) {
+                padding-left: 1.5rem;
+            }
+            .posts> :nth-child(3n) {
+                padding-right: 1.5rem;
+            }
+            .posts> :nth-child(3n + 1),
+            .posts> :nth-child(3n) {
+                padding: 1.5rem;
+                width: calc(50% + 1.5rem);
+            }
+            .posts>* {
+                padding: 1.5rem;
+                width: calc(50% + 1.5rem);
+            }
+            .posts> :nth-child(-n + 2) {
+                padding-top: 0;
+            }
+            .posts> :nth-last-child(-n + 2) {
+                padding-bottom: 0;
+            }
+            .posts> :nth-child(2n + 1) {
+                padding-left: 0;
+            }
+            .posts> :nth-child(2n) {
+                padding-right: 0;
+            }
+            .posts> :nth-child(2n + 1),
+            .posts> :nth-child(2n) {
+                width: calc(50% + 0rem);
+            }
+            .posts article:nth-child(3n):last-child {
+                padding-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 736px) {
+            .posts>* {
+                width: 50%;
+            }
+            .posts>* {
+                padding: 1rem;
+                width: calc(33.33333% + 0.66667rem);
+            }
+            .posts> :nth-child(-n + 3) {
+                padding-top: 1rem;
+            }
+            .posts> :nth-last-child(-n + 3) {
+                padding-bottom: 1rem;
+            }
+            .posts> :nth-child(3n + 1) {
+                padding-left: 1rem;
+            }
+            .posts> :nth-child(3n) {
+                padding-right: 1rem;
+            }
+            .posts> :nth-child(3n + 1),
+            .posts> :nth-child(3n) {
+                padding: 1rem;
+                width: calc(50% + 1rem);
+            }
+            .posts>* {
+                padding: 1rem;
+                width: calc(50% + 1rem);
+            }
+            .posts> :nth-child(-n + 2) {
+                padding-top: 1rem;
+            }
+            .posts> :nth-last-child(-n + 2) {
+                padding-bottom: 1rem;
+            }
+            .posts> :nth-child(2n + 1) {
+                padding-left: 1rem;
+            }
+            .posts> :nth-child(2n) {
+                padding-right: 1rem;
+            }
+            .posts> :nth-child(2n + 1),
+            .posts> :nth-child(2n) {
+                padding: 1rem;
+                width: calc(50% + 1rem);
+            }
+            .posts>* {
+                padding: 1rem;
+                width: calc(50% + 1rem);
+            }
+            .posts> :nth-child(-n + 2) {
+                padding-top: 0;
+            }
+            .posts> :nth-last-child(-n + 2) {
+                padding-bottom: 0;
+            }
+            .posts> :nth-child(2n + 1) {
+                padding-left: 0;
+            }
+            .posts> :nth-child(2n) {
+                padding-right: 0;
+            }
+            .posts> :nth-child(2n + 1),
+            .posts> :nth-child(2n) {
+                width: calc(50% + 0rem);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .posts>* {
+                width: 100%;
+            }
+            .posts>* {
+                padding: 1.5rem;
+                width: calc(33.33333% + 1rem);
+            }
+            .posts> :nth-child(-n + 3) {
+                padding-top: 1.5rem;
+            }
+            .posts> :nth-last-child(-n + 3) {
+                padding-bottom: 1.5rem;
+            }
+            .posts> :nth-child(3n + 1) {
+                padding-left: 1.5rem;
+            }
+            .posts> :nth-child(3n) {
+                padding-right: 1.5rem;
+            }
+            .posts> :nth-child(3n + 1),
+            .posts> :nth-child(3n) {
+                padding: 1.5rem;
+                width: calc(100% + 3rem);
+            }
+            .posts>* {
+                padding: 1.5rem;
+                width: calc(50% + 1.5rem);
+            }
+            .posts> :nth-child(-n + 2) {
+                padding-top: 1.5rem;
+            }
+            .posts> :nth-last-child(-n + 2) {
+                padding-bottom: 1.5rem;
+            }
+            .posts> :nth-child(2n + 1) {
+                padding-left: 1.5rem;
+            }
+            .posts> :nth-child(2n) {
+                padding-right: 1.5rem;
+            }
+            .posts> :nth-child(2n + 1),
+            .posts> :nth-child(2n) {
+                padding: 1.5rem;
+                width: calc(100% + 3rem);
+            }
+            .posts>* {
+                padding: 1.5rem;
+                width: calc(100% + 3rem);
+            }
+            .posts> :nth-child(-n + 1) {
+                padding-top: 0;
+            }
+            .posts> :nth-last-child(-n + 1) {
+                padding-bottom: 0;
+            }
+            .posts> :nth-child(1n + 1) {
+                padding-left: 0;
+            }
+            .posts> :nth-child(1n) {
+                padding-right: 0;
+            }
+            .posts> :nth-child(1n + 1),
+            .posts> :nth-child(1n) {
+                width: calc(100% + 1.5rem);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .posts article .image {
+                max-width: 100%;
+            }
+        }
+
+        .main {
+            position: relative;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .main>* {
+            position: relative;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            max-width: 100%;
+        }
+
+        .main>*:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -100vw;
+            width: 200vw;
+            height: 1px;
+            background: #dde1eb;
+        }
+
+        .main>*.small {
+            width: 48rem;
+        }
+
+        .main>*.medium {
+            width: 60rem;
+        }
+
+        .main> :first-child:before {
+            display: none;
+        }
+
+        .main>header {
+            padding: 7rem 6rem 5rem 6rem;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .main>header> :first-child {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .main>header> :first-child:after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -25px;
+            left: 10%;
+            width: 29rem;
+            height: 3px;
+            margin-left: -10rem;
+            background-image: linear-gradient(90deg, #a480ff, #ff8f83);
+        }
+
+        .main>.image {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 30rem;
+        }
+
+        .main>.image:before {
+            display: none;
+        }
+
+        .main>.image img {
+            width: 100%;
+        }
+
+        .main>.inner {
+            padding: 6rem 6rem 4rem 6rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+        .main>footer {
+            padding: 3rem 6rem 1rem 6rem;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1280px) {
+            .main>header {
+                padding: 5rem 3rem 3rem 3rem;
+            }
+            .main>.image {
+                height: 25rem;
+            }
+            .main>.inner {
+                padding: 3rem 3rem 1rem 3rem;
+            }
+            .main>footer {
+                padding: 3rem 3rem 1rem 3rem;
+            }
+        }
+
+        @media screen and (max-width: 980px) {
+            .main>*.small {
+                width: 42rem;
+            }
+            .main>.image {
+                height: 22.5rem;
+            }
+        }
+
+        @media screen and (max-width: 736px) {
+            .main>header {
+                padding: 3rem 2rem 1rem 2rem;
+            }
+            .main>header> :first-child {
+                padding-bottom: 1.5rem;
+                margin-bottom: 1.75rem;
+            }
+            .main>header> :first-child:after {
+                width: 10rem;
+                margin-left: -5rem;
+            }
+            .main>.image {
+                height: 15rem;
+            }
+            .main>.inner {
+                padding: 2rem 2rem 0.1rem 2rem;
+            }
+            .main>footer {
+                padding: 2rem 2rem 0.1rem 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .main>header {
+                padding: 3rem 1.5rem 1rem 1.5rem;
+            }
+            .main>.inner {
+                padding: 2rem 1.5rem 0.1rem 1.5rem;
+            }
+            .main>footer {
+                padding: 2rem 1.5rem 0.1rem 1.5rem;
+            }
+        }
+
+        body {
+            padding-top: 4.5rem;
+        }
+
+        @media screen and (max-width: 736px) {
+            body {
+                padding-top: 44px;
+            }
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4.5rem;
+            line-height: 4.5rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 0.5rem 0 rgba(161, 177, 204, 0.325);
+            cursor: default;
+            z-index: 10000;
+        }
+
+        #header a {
+            display: block;
+            height: inherit;
+            line-height: inherit;
+            border-bottom: 0;
+        }
+
+        #header a:hover {
+            color: #e59dc4;
+        }
+
+        @media screen and (max-width: 736px) {
+            #header {
+                height: 44px;
+                line-height: 44px;
+            }
+        }
+
+        #footer {
+            color: rgba(122, 125, 134, 0.75);
+            margin: -2rem 0 6rem 0;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1680px) {
+            #footer {
+                margin: 0 0 3.5rem 0;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #footer {
+                margin: 2rem 0;
+            }
+        }
+
+        #wrapper {
+            width: 80rem;
+            max-width: calc(100% - 7rem);
+            margin: 0 auto;
+            padding: 6rem 0;
+        }
+
+        #wrapper>* {
+            margin: 3.5rem 0 0 0;
+            box-shadow: 0 1rem 4rem 0.125rem rgba(161, 177, 204, 0.325);
+        }
+
+        #wrapper> :first-child {
+            margin-top: 0;
+        }
+
+        @media screen and (max-width: 1680px) {
+            #wrapper {
+                padding: 3.5rem 0;
+            }
+        }
+
+        @media screen and (max-width: 1280px) {
+            #wrapper {
+                max-width: calc(100% - 5rem);
+                padding: 2.5rem 0;
+            }
+            #wrapper>* {
+                margin: 2.5rem 0 0 0;
+            }
+        }
+
+        @media screen and (max-width: 736px) {
+            #wrapper {
+                max-width: calc(100% - 4rem);
+                padding: 2rem 0;
+            }
+            #wrapper>* {
+                margin: 2rem 0 0 0;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #wrapper {
+                max-width: 100%;
+                padding: 0;
+            }
+            #wrapper>* {
+                margin: 1.5rem 0 0 0;
+                box-shadow: none;
+            }
+        }
+
+        header .avatar {
+            border-radius: 100%;
+            display: inline-block;
+            margin: 0 0 2em 0;
+            padding: 0.5em;
+            border: solid 1px rgba(128, 0, 79, 0.25);
+            background-color: rgba(128, 0, 79, 0.075);
+        }
+
+        header .avatar img {
+            border-radius: 100%;
+            display: block;
+            width: 10em;
+        }
+
+        .icon.style2 {
+            -moz-transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -ms-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+            border-radius: 100%;
+            display: inline-block;
+            padding: 0.5em;
+            border: solid 1px rgba(128, 0, 79, 0.25);
+            background-color: rgba(128, 0, 79, 0.075);
+        }
+
+        .icon.style2:before {
+            display: block;
+            width: 1.25em;
+            height: 1.25em;
+            line-height: 1.25em;
+            font-size: 1.35em;
+        }
+
+        .icon.style2:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        h1 {
+            font-size: 30px;
+            line-height: 1.25;
+            margin: 0 0 2rem 0;
+        }
+
+        .frame {
+            height: 300px;
+            width: 300px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body class="" cz-shortcut-listen="true">
+    <div id="wrapper">
+        <section class="main style1">
+            <header class="small">
+                <span class="avatar">
+                    <img src="https://scontent.ftpe3-1.fna.fbcdn.net/v/t1.0-9/27973202_2101408673210545_6569009272974668431_n.jpg?_nc_cat=0&oh=65a452bc5bceaaa77217ff2ea6e23b0f&oe=5B830234"
+                        alt="" />
+                </span>
+                <h1>在BuildSchool，我當問題學生。</h1>
+                <p>下列作品展示由Buildschool學習6個月以來作業成果。
+                </br>可以連結 Github 了解我的思維，連結 Facebook 、 Instagram 了解我的生活。
+                </br>聯絡我：s11996123@gmail.com。
+                </p>
+                <ul class="icons">
+                    <li>
+                        <a href="https://www.facebook.com/GoodLittler?ref=bookmarks" class="icon style2 fa-facebook">
+                            <span class="label">Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/xiaolang_22/" class="icon style2 fa-instagram">
+                            <span class="label">Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/KuanTsai" class="icon style2 fa-github">
+                            <span class="label">Github</span>
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <div class="inner">
+                <div class="posts">
+                    <article>
+                        <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/Calendar.html" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/Calendar.JPG" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>月曆</strong></br>JavaScript
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/Calendar.html" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/news/index.html" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/nolife.png" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>不動新聞</strong></br>第一個刻板網頁
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/news/index.html" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/jQultimatepassword.html" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/ultimatepassword.JPG" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>終極密碼</strong></br>JQuery
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/jQultimatepassword.html" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/Resume/Trello.html" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/Trello.jpg" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>Trello 刻板</strong></br>bootstrap
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/Resume/Trello.html" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/Resume/buildshool.html" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/buildschool.png" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>BuildSchool 刻板</strong></br>bootstrap
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/Resume/buildshool.html" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/shopee.html" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/shoppa.png" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>蝦皮購物 刻板</strong></br>bootstrap
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://webbuildschool.azurewebsites.net/HomeworkExercises/shopee.html" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://github.com/KuanTsai/C-Sharp-practice/blob/master/Homework_002/%E9%81%8B%E8%BC%B8%E7%A5%A8%E5%83%B9/Form1.cs" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/TicketFare.JPG" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>運輸票價</strong></br>IEqualityComparer 實作
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://github.com/KuanTsai/C-Sharp-practice/blob/master/Homework_002/%E9%81%8B%E8%BC%B8%E7%A5%A8%E5%83%B9/Form1.cs" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <article>
+                        <a href="https://github.com/KuanTsai/C-Sharp-practice/tree/master/BuildSchoolBizSystem" class="image filtered">
+                            <div class="frame">
+                                <img src="./image/BuildSchoolBizSystem.JPG" alt="">
+                            </div>
+                        </a>
+                        <p>
+                            <strong>進銷存</strong></br>邏輯與畫面要切割清楚、減少程式碼的重複
+                        </p>
+                        <ul class="actions">
+                            <li>
+                                <a href="https://github.com/KuanTsai/C-Sharp-practice/tree/master/BuildSchoolBizSystem" class="button small next">Details</a>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer id="footer"> 奇女子 Kuan，讓你笑到頭髮骨折。 </footer>
+</body>
+
+</html>
